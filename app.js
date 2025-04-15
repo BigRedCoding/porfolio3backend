@@ -27,8 +27,12 @@ const mainRouter = require("./routes/index");
 const corsOptions = {
   origin(origin, callback) {
     if (
-      origin === "https://www.bigredcoding.com/" ||
-      origin === "https://api.bigredcoding.com/"
+      origin === "https://www.bigredcoding.com" ||
+      origin === "https://api.bigredcoding.com" ||
+      origin === "https://wtwr.bigredcoding.com" ||
+      origin === "https://planetpledge.bigredcoding.com" ||
+      origin === "https://finalproject.bigredcoding.com" ||
+      origin === "https://securitydemo.bigredcoding.com"
     ) {
       callback(null, true);
     } else {
@@ -38,6 +42,7 @@ const corsOptions = {
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,
 };
+
 
 const corsPolicy =
   process.env.NODE_ENV === "production" ? cors(corsOptions) : cors();
