@@ -23,6 +23,8 @@ const { requestLogger, errorLogger } = require("./middlewares/logger");
 const { HttpError } = require("./utils/errors");
 
 const mainRouter = require("./routes/index");
+const primaryRouter = require("./routes/primary");
+
 
 const corsOptions = {
   origin(origin, callback) {
@@ -53,13 +55,15 @@ app.use(rateLimiter);
 
 app.use(requestLogger);
 
-mongoose.connect("mongodb://127.0.0.1:27017/NewsExplorer_db").catch(() => {
+mongoose.connect("mongodb://127.0.0.1:27017/1066843f2099e10caeb65d8e4165805e").catch(() => {
   throw new HttpError.ServerError("An error has occurred on the server");
 });
 
 app.use(express.json());
 
-app.use("/projects/", rateLimiter, mainRouter);
+app.use("/projects", rateLimiter, mainRouter);
+app.use("/primary", rateLimiter, primaryRouter);
+
 
 app.listen(PORT);
 

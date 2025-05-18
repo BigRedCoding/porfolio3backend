@@ -8,8 +8,7 @@
     "lint": "npx eslint .",
     "start": "node app.js",
     "dev": "nodemon app.js",
-  "deploy": "scp -r ../backend_portfolio brandondooleycoding@34.53.73.139:/home/brandondooleycoding/backend"
-
+    "deploy": "scp -r ../backend_portfolio brandondooleycoding@34.53.73.139:/home/brandondooleycoding/backend"
   },
   "author": "Brandon Dooley",
   "license": "ISC",
@@ -17,12 +16,16 @@
     "bcryptjs": "^2.4.3",
     "celebrate": "^15.0.3",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "express-rate-limit": "^7.5.0",
     "express-winston": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
+    "multer": "^1.4.5-lts.2",
+    "nodemailer": "^7.0.3",
+    "uuid": "^11.1.0",
     "validator": "^13.12.0",
     "winston": "^3.17.0"
   },
