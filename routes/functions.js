@@ -62,7 +62,6 @@ router.post("/sendnewproject", upload.array("attachments"), async (req, res) => 
 });
 
 router.post("/sendmessage", express.json(), async (req, res) => {
-    console.log(req.body);
     const fields = req.body;
     const textBody = Object.entries(fields)
         .map(([key, value]) => `${key}: ${value}`)
@@ -72,7 +71,7 @@ router.post("/sendmessage", express.json(), async (req, res) => {
         const info = await transporter.sendMail({
             from: process.env.EMAIL_USER,
             to: process.env.EMAIL_USER,
-            subject: `New Project Submission from ${fields.name || "unknown user"}`,
+            subject: `New message from ${fields.name || "unknown user"}`,
             text: textBody,
         });
 

@@ -16,7 +16,6 @@ const transporter = require("../utils/emailing");
 require("dotenv").config();
 
 const createUser = (req, res, next) => {
-    console.log(req.body);
     const { name, password, email, phone, avatar, company } = req.body;
     const date = Date.now();
 
@@ -64,10 +63,8 @@ const createUser = (req, res, next) => {
                     if (createUserError.name === "CastError") {
                         return next(HttpError.BadRequestError("Invalid ID"));
                     }
-                    console.log(createUserError);
                     const errorMessage = createUserError.message;
                     return next(
-
                         HttpError.ServerError(`An error has occurred on the server: ${errorMessage}`)
                     );
                 });
@@ -99,8 +96,6 @@ const getCurrentUser = (req, res, next) => {
 };
 
 const loginWith2FAInit = async (req, res, next) => {
-    console.log(req.body);
-
     const { email, password } = req.body;
 
     if (!email || !password) {
@@ -132,15 +127,12 @@ const loginWith2FAInit = async (req, res, next) => {
         if (error.message === "Invalid credentials") {
             return next(HttpError.UnauthorizedError("Invalid email or password"));
         }
-        console.log(error);
         const errorMessage = error.message;
         return next(HttpError.ServerError(`An error has occurred on the server: ${errorMessage}`));
     }
 };
 
 const verifyLogin2FA = async (req, res, next) => {
-    console.log(req.body);
-
     const { email, code } = req.body;
 
     if (!email || !code) {
@@ -240,7 +232,6 @@ const updateUserPassword = async (req, res, next) => {
 
         })
         .catch((error) => {
-            console.log(error);
             const errorMessage = error.message;
             return next(HttpError.ServerError(`An error has occurred on the server: ${errorMessage}`));
         });
