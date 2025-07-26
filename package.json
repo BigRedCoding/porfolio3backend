@@ -8,7 +8,7 @@
     "lint": "npx eslint .",
     "start": "node app.js",
     "dev": "nodemon app.js",
-    "deploy": "scp -r ../backend_portfolio brandondooleycoding@34.53.73.139:/home/brandondooleycoding/backend"
+    "deploy": "scp -r ../backend_portfolio brandondooleycoding@34.28.100.227:/home/brandondooleycoding/backend"
   },
   "author": "Brandon Dooley",
   "license": "ISC",
