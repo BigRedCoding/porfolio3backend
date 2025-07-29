@@ -49,11 +49,11 @@ const corsOptions = {
   ],
 };
 
-// Handle OPTIONS preflight requests for all routes
-app.options("*", cors(corsOptions));
-
 // Apply CORS middleware globally
 app.use(cors(corsOptions));
+app.options("*", cors(corsOptions), (req, res) => {
+  res.sendStatus(204);
+});
 
 app.use(rateLimiter);
 app.use(requestLogger);
