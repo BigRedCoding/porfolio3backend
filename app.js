@@ -17,41 +17,29 @@ const primaryRouter = require("./routes/primary");
 
 const app = express();
 
-const allowedOrigins = [
-  "https://www.bigredcoding.com",
-  "https://api.bigredcoding.com",
-  "https://wtwr.bigredcoding.com",
-  "https://planetpledge.bigredcoding.com",
-  "https://finalproject.bigredcoding.com",
-  "https://securitydemo.bigredcoding.com",
-];
-
-// CORS options with explicit origin checking and credentials
 const corsOptions = {
-  origin: (origin, callback) => {
-    if (allowedOrigins.includes(origin)) {
+  origin(origin, callback) {
+    if (
+      origin === "https://www.bigredcoding.com" ||
+      origin === "https://api.bigredcoding.com" ||
+      origin === "https://wtwr.bigredcoding.com" ||
+      origin === "https://planetpledge.bigredcoding.com" ||
+      origin === "https://finalproject.bigredcoding.com" ||
+      origin === "https://securitydemo.bigredcoding.com"
+    ) {
       callback(null, true);
     } else {
-      callback(new Error("CORS not allowed from this origin"));
+      callback(new Error("CORS not allowed"), false);
     }
   },
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   credentials: true,
-  allowedHeaders: [
-    "Content-Type",
-    "Authorization",
-    "X-Requested-With",
-    "Accept",
-    "Origin",
-    "Access-Control-Allow-Origin",
-  ],
 };
 
-// Apply CORS middleware globally
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions), (req, res) => {
-  res.sendStatus(204);
-});
+const corsPolicy =
+  process.env.NODE_ENV === "production" ? cors(corsOptions) : cors();
+
+app.use(corsPolicy);
 
 app.use(rateLimiter);
 app.use(requestLogger);
