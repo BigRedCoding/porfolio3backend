@@ -29,15 +29,12 @@ const allowedOrigins = [
 // CORS options with explicit origin checking and credentials
 const corsOptions = {
   origin: (origin, callback) => {
-    // Allow requests with no origin like curl or Postman
-    if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error("CORS not allowed from this origin"));
     }
   },
-  credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: [
     "Content-Type",
