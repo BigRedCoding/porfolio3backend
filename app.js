@@ -74,3 +74,9 @@ app.listen(PORT, () => {
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
+
+app.use((req, res, next) => {
+  console.log("Origin:", req.headers.origin);
+  console.log("Method:", req.method);
+  next();
+});
