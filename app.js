@@ -20,12 +20,10 @@ const app = express();
 const corsOptions = {
   origin(origin, callback) {
     if (
-      origin === "https://www.bigredcoding.com" ||
-      origin === "https://api.bigredcoding.com" ||
-      origin === "https://wtwr.bigredcoding.com" ||
-      origin === "https://planetpledge.bigredcoding.com" ||
-      origin === "https://finalproject.bigredcoding.com" ||
-      origin === "https://securitydemo.bigredcoding.com"
+      origin === "https://bigredcoding.rit.cl" ||
+      origin === "https://www.bigredcoding.rit.cl" ||
+      origin === "https://api.bigredcoding.rit.cl" ||
+      origin === "https://projects.bigredcoding.rit.cl"
     ) {
       callback(null, true);
     } else {
@@ -62,9 +60,3 @@ app.listen(PORT, () => {
 app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
-
-app.use((req, res, next) => {
-  console.log("Origin:", req.headers.origin);
-  console.log("Method:", req.method);
-  next();
-});
