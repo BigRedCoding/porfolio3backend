@@ -52,8 +52,8 @@ router.post(
 
     try {
       const info = await transporter.sendMail({
-        from: process.env.EMAIL_USER,
-        to: process.env.EMAIL_USER,
+        from: process.env.BREVO_SMTP_SENDER,
+        to: process.env.BREVO_SMTP_SENDER,
         subject: `New Project Submission from ${fields.name || "unknown user"}`,
         text: textBody,
         attachments,
@@ -77,8 +77,8 @@ router.post("/sendmessage", express.json(), async (req, res) => {
 
   try {
     const info = await transporter.sendMail({
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_USER,
+      from: process.env.BREVO_SMTP_SENDER,
+      to: process.env.BREVO_SMTP_SENDER,
       subject: `New message from ${fields.name || "unknown user"}`,
       text: textBody,
     });

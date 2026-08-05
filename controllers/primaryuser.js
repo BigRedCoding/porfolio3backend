@@ -115,7 +115,7 @@ const loginWith2FAInit = async (req, res, next) => {
     await user.save();
 
     await transporter.sendMail({
-      from: process.env.BREVO_SMTP_USER,
+      from: process.env.BREVO_SMTP_SENDER,
       to: user.email,
       subject: "Your login verification code",
       text: `Your 2FA code is: ${code}. It expires in 5 minutes.`,
