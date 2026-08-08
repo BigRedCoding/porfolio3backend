@@ -23,6 +23,7 @@ const corsOptions = {
       origin === "https://bigredcoding.rit.cl" ||
       origin === "https://www.bigredcoding.rit.cl" ||
       origin === "https://api.bigredcoding.rit.cl" ||
+      origin === "https://projects.bigredcoding.rit.cl" ||
       origin === "https://projects.bigredcoding.rit.cl/FinalProject" ||
       origin === "https://projects.bigredcoding.rit.cl/WTWR" ||
       origin === "https://projects.bigredcoding.rit.cl/PlanetPledge"
